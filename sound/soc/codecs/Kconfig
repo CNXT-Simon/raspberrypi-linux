@@ -68,6 +68,8 @@ config SND_SOC_ALL_CODECS
 	select SND_SOC_CS47L24 if MFD_CS47L24
 	select SND_SOC_CS53L30 if I2C
 	select SND_SOC_CX20442 if TTY
+	select SND_SOC_CX2070X_I2C if I2C
+	select SND_SOC_CX2070X_SPI if SPI_MASTER
 	select SND_SOC_DA7210 if SND_SOC_I2C_AND_SPI
 	select SND_SOC_DA7213 if I2C
 	select SND_SOC_DA7218 if I2C
@@ -552,6 +554,21 @@ config SND_SOC_CS53L30
 config SND_SOC_CX20442
 	tristate
 	depends on TTY
+
+config SND_SOC_CX2070X
+	tristate
+
+config SND_SOC_CX2070X_I2C
+	tristate "Synaptics CX2070X audio codec (I2C)"
+	depends on I2C
+	select CX2070X
+	select REGMAP_I2C
+
+config SND_SOC_CX2070X_SPI
+	tristate "Synaptics CX2070X audio codec (SPI)"
+	depends on SPI_MASTER
+	select CX2070X
+	select REGMAP_SPI
 
 config SND_SOC_JZ4740_CODEC
 	select REGMAP_MMIO
